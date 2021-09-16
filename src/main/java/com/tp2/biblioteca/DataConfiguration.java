@@ -15,7 +15,7 @@ public class DataConfiguration {
     @Bean
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+        dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/biblioteca");
         dataSource.setUsername("root");
         dataSource.setPassword("");
