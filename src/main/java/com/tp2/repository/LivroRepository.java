@@ -1,4 +1,8 @@
 package com.tp2.repository;
 
-public class LivroRepository {
+import com.tp2.models.Livro;
+import org.springframework.data.repository.CrudRepository;
+
+public interface LivroRepository extends CrudRepository<Livro,String> {
+
 }
