@@ -17,13 +17,13 @@ public class Genero {
     private long codigo;
 
     @NotNull
-    private String Genero;
+    private String nome;
 
-    public String getGenero() {
-        return Genero;
+    public String getNome() {
+        return nome;
     }
 
-    public void setGenero(String genero) {
-        Genero = genero;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

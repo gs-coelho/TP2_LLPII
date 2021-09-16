@@ -22,6 +22,15 @@ public class Livro implements Serializable {
     @ManyToOne
     private Genero genero;
 
+    public Livro(String isbn, String titulo, int numPaginas, Autor autor, Editora editora, Genero genero) {
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.numPaginas = numPaginas;
+        this.autor = autor;
+        this.editora = editora;
+        this.genero = genero;
+    }
+
     public String getTitulo() {
         return titulo;
     }
