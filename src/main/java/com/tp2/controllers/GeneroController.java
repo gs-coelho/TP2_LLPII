@@ -65,7 +65,7 @@ public class GeneroController {
         return "redirect:/genero/" + codigo;
     }
 
-    @RequestMapping(value = "/genero/deletar")
+    @RequestMapping(value = "/deletarGenero")
     public String deletarGenero(long codigo){
         Genero genero = gr.findByCodigo(codigo);
         gr.delete(genero);
