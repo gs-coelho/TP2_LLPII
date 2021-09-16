@@ -15,17 +15,6 @@ public class EditoraController {
     @Autowired
     private EditoraRepository er;
 
-    @RequestMapping(value = "/cadastrarEditora", method = RequestMethod.GET)
-    public String form() {
-        return "editora/formEditora";
-    }
-
-    @RequestMapping(value = "/cadastrarEditora", method = RequestMethod.POST)
-    public String form(Editora editora) {
-        er.save(editora);
-        return "redirect:/cadastrarEditora";
-    }
-
     @RequestMapping(value = "/editora", method = RequestMethod.GET)
     public ModelAndView listaEditoras(){
         ModelAndView mv = new ModelAndView("editora/formEditora");
