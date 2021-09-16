@@ -1,6 +1,8 @@
 package com.tp2.controllers;
 
 import com.tp2.models.Autor;
+import com.tp2.models.Editora;
+import com.tp2.models.Genero;
 import com.tp2.models.Livro;
 import com.tp2.repository.AutorRepository;
 import com.tp2.repository.EditoraRepository;
@@ -49,10 +51,13 @@ public class LivroController {
         return "redirect:/livro";
     }
 
-    @RequestMapping("/livro")
+    @RequestMapping(value = "/livro", method = RequestMethod.GET)
     public ModelAndView listaLivros(){
         ModelAndView mv = new ModelAndView("livro/formLivro");
         Iterable<Livro> livros = lr.findAll();
+        Iterable<Genero> generosSelect = gr.findAll();
+        Iterable<Autor> autoresSelect = ar.findAll();
+        Iterable<Editora> editorasSelect = er.findAll();
         ArrayList<String> autores = new ArrayList();
         ArrayList<String> editoras = new ArrayList();
         ArrayList<String> generos = new ArrayList();
@@ -68,6 +73,9 @@ public class LivroController {
         mv.addObject("autores", autores);
         mv.addObject("editoras", editoras);
         mv.addObject("generos", generos);
+        mv.addObject("autoresSelect", autoresSelect);
+        mv.addObject("editorasSelect", editorasSelect);
+        mv.addObject("generosSelect", generosSelect);
 
         return mv;
     }
@@ -102,4 +110,6 @@ public class LivroController {
 
         return "redirect:/livro";
     }
+
+
 }
