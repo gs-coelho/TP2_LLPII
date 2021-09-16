@@ -1,5 +1,6 @@
 package com.tp2.controllers;
 
+import com.tp2.models.Autor;
 import com.tp2.models.Livro;
 import com.tp2.repository.AutorRepository;
 import com.tp2.repository.EditoraRepository;
@@ -29,20 +30,20 @@ public class LivroController {
     @Autowired
     private GeneroRepository gr;
 
-    @RequestMapping(value = "/cadastrarLivro", method = RequestMethod.GET)
+    @RequestMapping(value = "/livro", method = RequestMethod.GET)
     public String form(){
         return "livro/formLivro";
     }
 
-    @RequestMapping(value = "/cadastrarLivro", method = RequestMethod.POST)
+    @RequestMapping(value = "/livro", method = RequestMethod.POST)
     public String form(String isbn, String titulo, int numPaginas, String autor, String editora, String genero){
         Livro livro = new Livro(isbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
         lr.save(livro);
 
-        return "redirect:/cadastrarLivro";
+        return "redirect:/livro";
     }
 
-    @RequestMapping("/cadastrarLivros")
+    @RequestMapping("/livros")
     public ModelAndView listaLivros(){
         ModelAndView mv = new ModelAndView("livro/formLivro");
         Iterable<Livro> livros = lr.findAll();
@@ -66,11 +67,28 @@ public class LivroController {
     }
 
     @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.GET)
-    public ModelAndView detalhesLivro(@PathVariable("isbn") String isbn){
+    public ModelAndView editarLivro(@PathVariable("isbn") String isbn){
         Livro livro = lr.findByIsbn(isbn);
         ModelAndView mv = new ModelAndView("livro/editarLivro");
         mv.addObject("livro", livro);
 
         return mv;
     }
+
+    @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.POST)
+    public String editarLivroPost(@PathVariable("codigo") String isbn, String titulo, int numPaginas, String autor, String editora, String genero){
+        Livro livro = new Livro(isbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
+        lr.save(livro);
+
+        return "redirect:/livro/{isbn}";
+    }
+
+//    @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.GET)
+//    public ModelAndView editarLivro(@PathVariable("isbn") String isbn){
+//        Livro livro = lr.findByIsbn(isbn);
+//        ModelAndView mv = new ModelAndView("livro/editarLivro");
+//        mv.addObject("livro", livro);
+//
+//        return mv;
+//    }
 }
