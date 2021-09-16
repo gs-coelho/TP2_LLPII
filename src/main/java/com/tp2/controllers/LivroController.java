@@ -30,13 +30,8 @@ public class LivroController {
     @Autowired
     private GeneroRepository gr;
 
-    @RequestMapping(value = "/livro", method = RequestMethod.GET)
-    public String form(){
-        return "livro/formLivro";
-    }
-
     @RequestMapping(value = "/livro", method = RequestMethod.POST)
-    public String form(String isbn, String titulo, int numPaginas, String autor, String editora, String genero){
+    public String cadastraLivro(String isbn, String titulo, int numPaginas, String autor, String editora, String genero){
         Livro livro = new Livro(isbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
         lr.save(livro);
 

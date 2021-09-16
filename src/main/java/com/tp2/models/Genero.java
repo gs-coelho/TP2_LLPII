@@ -14,7 +14,6 @@ public class Genero {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @NotEmpty
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
 
