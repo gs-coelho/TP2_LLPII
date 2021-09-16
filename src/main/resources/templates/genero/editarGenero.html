@@ -1,18 +1,25 @@
-<HTML xmlns:th="http://thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns: th="http://thymeleaf.org"
+      xmlns: layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Biblioteca</title>
 
-    <link rel="stylesheet" type="text/css" href="css/geral.css" media="screen"/>
 </head>
 <body>
 <div id="menu">
     <h1>Gerenciador de Biblioteca</h1>
-    <a href="/cadastrarEditora"><h3>Gerenciar Editoras</h3></a>
-    <a href="/cadastrarAutor"><h3>Gerenciar Autoras</h3></a>
-    <a href="/cadastrarGenero"><h3>Gerenciar Gêneros</h3></a>
+    <h3><a class="waves-effect waves-light btn" href="/cadastrarGenero">Gerenciar Gêneros</a></h3>
+    <h3><a class="waves-effect waves-light btn" href="/cadastrarAutor">Gerenciar Autores</a></h3>
+    <h3><a class="waves-effect waves-light btn" href="/cadastrarEditora">Gerenciar Editoras</a></h3>
+    <h3><a class="waves-effect waves-light btn" href="/cadastrarLivro">Gerenciar Livros</a></h3>
 </div>
 
 <h2>Edite um Gênero</h2>
@@ -21,6 +28,7 @@
 </form>
 <button type="submit">Salvar</button>
 
-<script type="text/javascript" src="js/javascript-geral.js"></script>
+<script type = "text / javascript" src = "https://code.jquery.com/jquery-3.2.1.min.js "> </script>
+<script type =" text / javascript "src =" materialize / js / materialize.min.js "> </script>
 </body>
 </html>

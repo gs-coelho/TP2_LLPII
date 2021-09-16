@@ -1,18 +1,25 @@
 <!DOCTYPE html>
-<HTML xmlns:th="http://thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns: th = "http://thymeleaf.org"
+      xmlns: layout = "http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/geral.css" media="screen"/>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Editora</title>
 </head>
 <body>
     <div id="menu">
     <h1>Gerenciador de Biblioteca</h1>
-    <a href="/cadastrarGenero"><h3>Gerenciar Gêneros</h3></a>
-    <a href="/cadastrarAutor"><h3>Gerenciar Autoras</h3></a>
-    <a href="/cadastrarLivro"><h3>Gerenciar Livros</h3></a>
+    <h3><a class="waves-effect waves-light btn" href="/cadastrarGenero">Gerenciar Gêneros</a></h3>
+    <h3><a class="waves-effect waves-light btn" href="/cadastrarAutor">Gerenciar Autores</a></h3>
+    <h3><a class="waves-effect waves-light btn" href="/cadastrarLivro">Gerenciar Livros</a></h3>
+
     </div>
 
     <h2>Cadastrar uma Editora</h2>
@@ -20,7 +27,7 @@
     <form action="">
         Editora<input type="text" value="" name="editora"/>
     </form>
-    <button type="submit">Salvar</button>
+    <button type="submit" class="waves-effect waves-light btn">Salvar</button>
     <table>
         <thead>
         <tr>
@@ -29,19 +36,20 @@
             <th>Apagar</th>
         </tr>
         </thead>
-
+        <tbody>
     <h2>Tabela das Editoras:</h2>
     <tr th:each="editora: ${editoras}">
         <!-- tabela-->
         <div class="row"></div>
         <td><span th: text="${editora.nome}"></span></td>
-        <a href="/editarEditora"><td><button type="submit">Editar</button></td></a>
-        <td><button type="submit">Deletar</button></td>
+        <td><a href="/editarLivro" class="waves-effect waves-light btn"><button id="botaoEditar" type="submit">Editar</button></a></td>
+        <td><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></td>
         </tr>
         </tbody>
         </table>
 
 
-    <script type="text/javascript" src="js/javascript-geral.js"></script>
+    <script type = "text / javascript" src = "https://code.jquery.com/jquery-3.2.1.min.js "> </script>
+    <script type =" text / javascript "src =" materialize / js / materialize.min.js "> </script>s
 </body>
 </html>

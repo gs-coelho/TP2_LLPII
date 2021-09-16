@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<HTML xmlns:th="http://thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns: th = "http://thymeleaf.org"
+      xmlns: layout = "http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
     <meta charset="UTF-8">
-    <title>Livro</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 
-    <link rel="stylesheet" type="text/css" href="css/geral.css" media="screen"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Livros</title>
+
 </head>
-
     <body>
     <div id="menu">
     <h1>Gerenciador de Biblioteca</h1>
-    <a href="/cadastrarEditora"><h3>Gerenciar Editoras</h3></a>
-    <a href="/cadastrarAutor"><h3>Gerenciar Autoras</h3></a>
-    <a href="/cadastrarGenero"><h3>Gerenciar Gêneros</h3></a>
+        <h3><a class="waves-effect waves-light btn" href="/cadastrarGenero">Gerenciar Gêneros</a></h3>
+        <h3><a class="waves-effect waves-light btn" href="/cadastrarAutor">Gerenciar Autores</a></h3>
+        <h3><a class="waves-effect waves-light btn" href="/cadastrarEditora">Gerenciar Editoras</a></h3>
     </div>
 
     <h2>Cadastre um livro</h2>
@@ -31,8 +36,8 @@
                 <option value="valor1">Valor 1</option>
             </select>
 
-            ISBN<input type="number" value="" name="isbn"/>
-            Número de Páginas<input type="number" value="" name="numPaginas"/>
+            ISBN<input type="text" value="" name="isbn"/>
+            Número de Páginas<input type="number" name="numPaginas"/>
             <button type="submit">Salvar</button>
         </form>
 
@@ -49,7 +54,6 @@
                 <th>Número de Páginas</th>
                 <th>Editar</th>
                 <th>Apagar</th>
-
     </tr>
     </thead>
 
@@ -57,18 +61,18 @@
         <tr th:each="livro: ${livros}">
             <!-- tabela-->
             <div class="row"></div>
-                <td><span th: text="${livro.titulo}"></span></td>
-                <td><span th: text="${autor.nome}"></span></td>
-                <td><span th: text="${editora.nome}"></span></td>
-                <td><span th: text="${gênero.nome}"></span></td>
-                <td><span th: text="${livro.isbn}"></span></td>
-                <td><span th: text="${livro.numPaginas}"></span></td>
-                <a href="/editarLivro"><td><button type="submit">Editar</button></td></a>
-                <td><button type="submit">Deletar</button></td>
+                <td><span th:text="${livro.titulo}"></span></td>
+                <td><span th:text="${autor.nome}"></span></td>
+                <td><span th:text="${editora.nome}"></span></td>
+                <td><span th:text="${gênero.nome}"></span></td>
+                <td><span th:text="${livro.isbn}"></span></td>
+                <td><span th:text="${livro.numPaginas}"></span></td>
+                <td><a href="/editarLivro"><button id="botaoEditar" type="submit">Editar</button></a></td>
+                <td><button id="botaoApagar" type="submit">Deletar</button></td> <!-- n entendi -->
         </tr>
     </tbody>
     </table>
 
-    <script type="text/javascript" src="js/javascript-geral.js"></script>
+    <script type = "text / javascript" src = "https://code.jquery.com/jquery-3.2.1.min.js "> </script>
+    <script type =" text / javascript "src =" materialize / js / materialize.min.js "> </script>
 </body>
-</HTML>
