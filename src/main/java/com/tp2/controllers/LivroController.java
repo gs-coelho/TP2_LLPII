@@ -28,7 +28,7 @@ public class LivroController {
         return "redirect:/cadastrarLivro";
     }
 
-    @RequestMapping("/castrarLivros")
+    @RequestMapping("/cadastrarLivros")
     public ModelAndView listaLivros(){
         ModelAndView mv = new ModelAndView("livro/formLivro");
         Iterable<Livro> livros = lr.findAll();
@@ -37,9 +37,9 @@ public class LivroController {
         return mv;
     }
 
-    @RequestMapping("/{codigo}")
-    public ModelAndView detalhesLivro(@PathVariable("codigo") long codigo){
-        Livro livro = lr.findByCodigo(codigo);
+    @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.GET)
+    public ModelAndView detalhesLivro(@PathVariable("isbn") String isbn){
+        Livro livro = lr.findByIsbn(isbn);
         ModelAndView mv = new ModelAndView("livro/editarLivro");
         mv.addObject("livro", livro);
 

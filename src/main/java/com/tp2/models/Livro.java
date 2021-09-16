@@ -6,32 +6,21 @@ import java.io.Serializable;
 @Entity
 public class Livro implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long codigo;
+    private String isbn;
 
     private String titulo;
-    private String isbn;
+
     private int numPaginas;
 
     @ManyToOne
-    private Autor autores;
+    private Autor autor;
 
     @ManyToOne
     private Editora editora;
 
     @ManyToOne
     private Genero genero;
-
-    public long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(long codigo) {
-        this.codigo = codigo;
-    }
 
     public String getTitulo() {
         return titulo;
@@ -57,12 +46,12 @@ public class Livro implements Serializable {
         this.numPaginas = numPaginas;
     }
 
-    public Autor getAutores() {
-        return autores;
+    public Autor getAutor() {
+        return autor;
     }
 
-    public void setAutores(Autor autores) {
-        this.autores = autores;
+    public void setAutor(Autor autores) {
+        this.autor = autores;
     }
 
     public Editora getEditora() {

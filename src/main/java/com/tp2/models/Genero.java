@@ -1,5 +1,7 @@
 package com.tp2.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +16,7 @@ public class Genero {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
 
+    @NotNull
     private String Genero;
 
     public String getGenero() {
