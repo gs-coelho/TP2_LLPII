@@ -8,49 +8,61 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="styles/geral.css"/>
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Gêneros</title>
 </head>
 <body>
     <header>
-        <div id="menu">
-        <h1>Gerenciador de Biblioteca</h1>
-        <h3><a class="waves-effect waves-light btn" href="/livro">/livro</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/autor">Gerenciar Autores</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/editora">Gerenciar Editoras</a></h3>
-        </div>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Gerenciador de Biblioteca</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/livro">Livros</a></li>
+                    <li><a href="/autor">Autores</a></li>
+                    <li><a href="/editora">Editoras</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
-    <div class="container">
-    <h2>Cadastre um Gênero</h2>
-    <!-- adicionar autor-->
-    <form action="">
-        Gênero<input type="text" value="" name="genero"/>
-    </form>
-    <button type="submit">Salvar</button>
 
-    <h2>Tabela dos Gêneros</h2>
-     <table>
-            <thead>
+    <div class="container">
+        <h1>Cadastre um Gênero</h1>
+        <!-- adicionar autor-->
+        <form method="POST">
+            Gênero<input type="text" value="" name="nome"/>
+            <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+        </form>
+
+        <h2>Tabela dos Gêneros</h2>
+         <table>
+             <thead>
                 <tr>
                     <th>Gênero</th>
                     <th>Editar</th>
-                    <th>Apagar</th>
-        </tr>
-        </thead>
-    <tbody>
+                    <th>Deletar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="genero:${generos}">
+                    <!-- tabela-->
+                    <td><span th:text="${genero.nome}"></span></td>
+                    <td><a href="/editarLivro"><button class="waves-effect waves-light btn" id="botaoEditar" type="submit">Editar</button></a></td>
+                    <td><a><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <tr th:each="genero:${generos}">
-            <!-- tabela-->
-            <td><span th:text="${genero.nome}"></span></td>
-             <td><a href="/editarLivro"><button class="waves-effect waves-light btn" id="botaoEditar" type="submit">Editar</button></a></td>
-                <td><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></td>
-    </tr>
-    </tbody>
-    </table>
-</div>
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+    <footer>
+        <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
+        <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
+        <p>INF3</p>
+    </footer>
+
 </body>
 </html>
