@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html xmlns: th = "http://thymeleaf.org"
-      xmlns: layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
        <meta charset="UTF-8">
         <!--Import Google Icon Font-->
@@ -16,8 +16,8 @@
     <div id="menu">
     <h1>Gerenciador de Biblioteca</h1>
     <h3><a class="waves-effect waves-light btn" href="/cadastrarLivro">Gerenciar Livros</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/cadastrarAutor">Gerenciar Autores</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/cadastrarEditora">Gerenciar Editoras</a></h3>
+    <h3><a class="waves-effect waves-light btn" href="/autor">Gerenciar Autores</a></h3>
+    <h3><a class="waves-effect waves-light btn" href="/editora">Gerenciar Editoras</a></h3>
     </div>
 
     <h2>Cadastre um Gênero</h2>
@@ -36,10 +36,10 @@
         </thead>
     <tbody>
     <h2>Tabela dos Gêneros</h2>
-    <tr th:each="genero: ${generos}">
+    <tr th:each="genero:${generos}">
             <!-- tabela-->
             <div class="row"></div>
-            <td><span th: text="${genero.nome}"></span></td>
+            <td><span th:text="${genero.nome}"></span></td>
              <td><a href="/editarLivro"><button id="botaoEditar" type="submit">Editar</button></a></td>
                 <td><button id="botaoApagar" type="submit">Deletar</button></td>
     </tr>
