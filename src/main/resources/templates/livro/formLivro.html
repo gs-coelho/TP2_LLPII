@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <HTML xmlns:th="http://thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <head>
     <title>Biblioteca</title>
 </head>
-    <body>
-    <h1>Dados dos Livros:</h1>
-    <form method="post">
-        Título<input type="text" value="" name="nome"/>
-        Autor<input type="text" value="" name="nome"/>
-        Editora<input type="text" value="" name="nome"/>
-        ISBN<input type="number" value="" name="nome"/>
-        Gênero<input type="text" value="" name="nome"/>
-        Número de Páginas<input type="number" value="" name="nome"/>
 
-        <button type="submit">Criar</button>
-        <button type="submit">Deletar</button>
-        <button type="submit">Editar</button>
-    </form>
+    <body>
+    <h1>Gerenciador de Biblioteca</h1>
+    <a href=formEditora.html><button>Gerenciar Editoras</button></a>
+    <a href="formAutor.html"><button>Gerenciar Autoras</button></a>
+    <a href="formGene.html"><button>Gerenciar Gêneros</button></a>
+
+
+    <h2>Cadastre um livro</h2>
+        <form method="post">
+            Título<input type="text" value="" name="nome"/>
+
+            Autor<select name="select">
+                <option value="valor1">Valor 1</option>
+            </select>
+            Editora<select name="select">
+                <option value="valor1">Valor 1</option>
+            </select>
+            Gênero<select name="select">
+                <option value="valor1">Valor 1</option>
+            </select>
+
+            ISBN<input type="number" value="" name="nome"/>
+            Número de Páginas<input type="number" value="" name="nome"/>
+        </form>
+
+        <div>
+            <h2>Tabela dos livros:</h2>
+            <!-- tabela-->
+
+            <button type="submit">Deletar</button>
+            <button type="submit">Editar</button>
+        </div>
+
+
+
 </body>
 </HTML>
