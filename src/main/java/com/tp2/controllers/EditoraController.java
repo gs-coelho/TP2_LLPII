@@ -56,4 +56,11 @@ public class EditoraController {
         attributes.addFlashAttribute("mensagem", "Editora editada com sucesso!");
         return "redirect:/editora/{codigo}";
     }
+
+    @RequestMapping("/editora/deletar")
+    public String deletarEditora(long codigo){
+        Editora editora = er.findByCodigo(codigo);
+        er.delete(editora);
+        return "redirect:/editora";
+    }
 }
