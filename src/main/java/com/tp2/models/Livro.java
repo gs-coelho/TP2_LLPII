@@ -1,25 +1,32 @@
 package com.tp2.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
 public class Livro implements Serializable {
 
     @Id
+    @NotEmpty
     private String isbn;
 
+    @NotEmpty
     private String titulo;
 
+    @NotEmpty
     private int numPaginas;
 
     @ManyToOne
+    @NotEmpty
     private Autor autor;
 
     @ManyToOne
+    @NotEmpty
     private Editora editora;
 
     @ManyToOne
+    @NotEmpty
     private Genero genero;
 
     public Livro(String isbn, String titulo, int numPaginas, Autor autor, Editora editora, Genero genero) {

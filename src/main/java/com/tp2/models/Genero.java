@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Genero {
@@ -13,10 +14,11 @@ public class Genero {
     private static final long serialVersionUID = 1L;
 
     @Id
+    @NotEmpty
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
 
-    @NotNull
+    @NotEmpty
     private String nome;
 
     public String getNome() {
