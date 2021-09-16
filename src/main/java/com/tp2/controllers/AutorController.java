@@ -50,10 +50,12 @@ public class AutorController {
     public String editarAutorPost(@PathVariable("codigo") long codigo, @Valid Autor autor, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
             attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+
             return "redirect:/autor/{codigo}";
         }
         ar.save(autor);
         attributes.addFlashAttribute("mensagem", "Autor editado com sucesso!");
+
         return "redirect:/autor/{codigo}";
     }
 

@@ -8,11 +8,14 @@ import com.tp2.repository.GeneroRepository;
 import com.tp2.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 
 @Controller
@@ -31,9 +34,17 @@ public class LivroController {
     private GeneroRepository gr;
 
     @RequestMapping(value = "/livro", method = RequestMethod.POST)
-    public String cadastraLivro(String isbn, String titulo, int numPaginas, String autor, String editora, String genero){
+    public String cadastraLivro(@Valid String isbn, @Valid String titulo, @Valid int numPaginas, @Valid String autor, @Valid String editora, @Valid String genero, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addAttribute("mensagem", "Verifique os campos!");
+
+            return "redirect:/livro";
+        }
+
         Livro livro = new Livro(isbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
         lr.save(livro);
+
+        attributes.addFlashAttribute("mensagem", "Livro adicionado com sucesso!");
 
         return "redirect:/livro";
     }
@@ -71,19 +82,24 @@ public class LivroController {
     }
 
     @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.POST)
-    public String editarLivroPost(@PathVariable("codigo") String isbn, String titulo, int numPaginas, String autor, String editora, String genero){
-        Livro livro = new Livro(isbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
+    public String editarLivroPost(@PathVariable("codigo") String isbn, @Valid String newIsbn, @Valid String titulo, @Valid int numPaginas, @Valid String autor, @Valid String editora, @Valid String genero, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addAttribute("mensagem", "Verifique os campos");
+
+            return "redirect:/livro/{isbn}";
+        }
+        Livro livro = new Livro(newIsbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
         lr.save(livro);
+        attributes.addFlashAttribute("mensagem", "Livro editado com sucesso!");
 
         return "redirect:/livro/{isbn}";
     }
 
-//    @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.GET)
-//    public ModelAndView editarLivro(@PathVariable("isbn") String isbn){
-//        Livro livro = lr.findByIsbn(isbn);
-//        ModelAndView mv = new ModelAndView("livro/editarLivro");
-//        mv.addObject("livro", livro);
-//
-//        return mv;
-//    }
+    @RequestMapping(value = "/livro/deletar")
+    public String deletarLivro(String isbn){
+        Livro livro = lr.findByIsbn(isbn);
+        lr.delete(livro);
+
+        return "redirect:/livro";
+    }
 }
