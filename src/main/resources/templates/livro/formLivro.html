@@ -4,7 +4,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Biblioteca</title>
+    <title>Livro</title>
+
+    <link rel="stylesheet" type="text/css" href="css/geral.css" media="screen"/>
 </head>
 
     <body>
@@ -19,29 +21,54 @@
         <form method="post">
             Título<input type="text" value="" name="nome"/>
 
-            Autor<select name="select">
+            Autor<select name="autor">
                 <option value="valor1">Valor 1</option>
             </select>
-            Editora<select name="select">
+            Editora<select name="editora">
                 <option value="valor1">Valor 1</option>
             </select>
-            Gênero<select name="select">
+            Gênero<select name="genero">
                 <option value="valor1">Valor 1</option>
             </select>
 
-            ISBN<input type="number" value="" name="nome"/>
-            Número de Páginas<input type="number" value="" name="nome"/>
+            ISBN<input type="number" value="" name="isbn"/>
+            Número de Páginas<input type="number" value="" name="numPaginas"/>
+            <button type="submit">Salvar</button>
         </form>
 
-        <div>
-            <h2>Tabela dos livros:</h2>
+    <h2>Tabela dos livros</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Gênero</th>
+                <th>ISBN</th>
+                <th>Número de Páginas</th>
+                <th>Editar</th>
+                <th>Apagar</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+        <tr th:each="livro: ${livros}">
             <!-- tabela-->
+            <div class="row"></div>
+                <td><span th: text="${livro.titulo}"></span></td>
+                <td><span th: text="${autor.nome}"></span></td>
+                <td><span th: text="${editora.nome}"></span></td>
+                <td><span th: text="${gênero.nome}"></span></td>
+                <td><span th: text="${livro.isbn}"></span></td>
+                <td><span th: text="${livro.numPaginas}"></span></td>
+                <a href="/editarLivro"><td><button type="submit">Editar</button></td></a>
+                <td><button type="submit">Deletar</button></td>
+        </tr>
+    </tbody>
+    </table>
 
-            <button type="submit">Deletar</button>
-            <button type="submit">Editar</button>
-        </div>
-
-
-
+    <script type="text/javascript" src="js/javascript-geral.js"></script>
 </body>
 </HTML>

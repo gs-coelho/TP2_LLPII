@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/geral.css" media="screen"/>
     <title>Editora</title>
 </head>
 <body>
@@ -17,16 +18,30 @@
     <h2>Cadastrar uma Editora</h2>
     <!-- adicionar editora-->
     <form action="">
-        Editora<input type="text" value="" name="nome"/>
+        Editora<input type="text" value="" name="editora"/>
     </form>
     <button type="submit">Salvar</button>
-
+    <table>
+        <thead>
+        <tr>
+            <th>Editora</th>
+            <th>Editar</th>
+            <th>Apagar</th>
+        </tr>
+        </thead>
 
     <h2>Tabela das Editoras:</h2>
-    <!-- tabela-->
+    <tr th:each="editora: ${editoras}">
+        <!-- tabela-->
+        <div class="row"></div>
+        <td><span th: text="${editora.nome}"></span></td>
+        <a href="/editarEditora"><td><button type="submit">Editar</button></td></a>
+        <td><button type="submit">Deletar</button></td>
+        </tr>
+        </tbody>
+        </table>
 
 
-    <button type="submit">Deletar</button>
-    <button type="submit">Editar</button>
+    <script type="text/javascript" src="js/javascript-geral.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/geral.css" media="screen"/>
     <title>Gêneros</title>
 </head>
 <body>
@@ -17,16 +18,30 @@
     <h2>Cadastre um Gênero</h2>
     <!-- adicionar autor-->
     <form action="">
-        Gênero<input type="text" value="" name="nome"/>
+        Gênero<input type="text" value="" name="genero"/>
     </form>
     <button type="submit">Salvar</button>
+     <table>
+            <thead>
+                <tr>
+                    <th>Gênero</th>
+                    <th>Editar</th>
+                    <th>Apagar</th>
+        </tr>
+        </thead>
+
+    <h2>Tabela dos Gêneros</h2>
+    <tr th:each="genero: ${generos}">
+            <!-- tabela-->
+            <div class="row"></div>
+            <td><span th: text="${genero.nome}"></span></td>
+             <a href="/editarGenero"><td><button type="submit">Editar</button></td></a>
+            <td><button type="submit">Deletar</button></td>
+    </tr>
+    </tbody>
+    </table>
 
 
-    <h2>Tabela dos Gêneros:</h2>
-    <!-- tabela-->
-
-
-    <button type="submit">Deletar</button>
-    <button type="submit">Editar</button>
+    <script type="text/javascript" src="js/javascript-geral.js"></script>
 </body>
 </html>

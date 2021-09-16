@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<HTML xmlns:th="http://thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca</title>
+
+    <link rel="stylesheet" type="text/css" href="css/geral.css" media="screen"/>
+</head>
+<body>
+<div id="menu">
+    <h1>Gerenciador de Biblioteca</h1>
+    <a href="/cadastrarEditora"><h3>Gerenciar Editoras</h3></a>
+    <a href="/cadastrarAutor"><h3>Gerenciar Autoras</h3></a>
+    <a href="/cadastrarGenero"><h3>Gerenciar Gêneros</h3></a>
+</div>
+
+<h2>Edite um livro</h2>
+<form method="post">
+    Título<input type="text" value="" name="nome"/>
+
+    Autor<select name="autor">
+    <option value="valor1">Valor 1</option>
+</select>
+    Editora<select name="editora">
+    <option value="valor1">Valor 1</option>
+</select>
+    Gênero<select name="genero">
+    <option value="valor1">Valor 1</option>
+</select>
+
+    ISBN<input type="number" value="" name="isbn"/>
+    Número de Páginas<input type="number" value="" name="numPaginas"/>
+    <button type="submit">Salvar</button>
+</form>
+
+<script type="text/javascript" src="js/javascript-geral.js"></script>
+</body>
+</HTML>
