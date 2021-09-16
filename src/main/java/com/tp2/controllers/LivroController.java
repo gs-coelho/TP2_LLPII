@@ -43,7 +43,7 @@ public class LivroController {
         return "redirect:/livro";
     }
 
-    @RequestMapping("/livros")
+    @RequestMapping("/livro")
     public ModelAndView listaLivros(){
         ModelAndView mv = new ModelAndView("livro/formLivro");
         Iterable<Livro> livros = lr.findAll();
