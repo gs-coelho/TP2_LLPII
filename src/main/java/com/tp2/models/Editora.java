@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Entity
@@ -14,6 +15,7 @@ public class Editora implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
 
+    @NotEmpty
     private String nome;
 
     public long getCodigo() {

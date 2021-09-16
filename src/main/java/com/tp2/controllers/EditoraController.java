@@ -4,10 +4,14 @@ import com.tp2.models.Editora;
 import com.tp2.repository.EditoraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class EditoraController {
@@ -24,8 +28,13 @@ public class EditoraController {
     }
 
     @RequestMapping(value = "/editora", method = RequestMethod.POST)
-    public String cadastraEditora(Editora editora){
+    public String cadastraEditora(@Valid Editora editora, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/editora";
+        }
         er.save(editora);
+        attributes.addAttribute("mensagem", "Editora adicionada com sucesso!");
         return "redirect:/editora";
     }
 
@@ -38,8 +47,13 @@ public class EditoraController {
     }
 
     @RequestMapping(value = "/editora/{codigo}", method = RequestMethod.POST)
-    public String editarEditoraPost(@PathVariable("codigo") long codigo, Editora editora){
+    public String editarEditoraPost(@PathVariable("codigo") long codigo, @Valid Editora editora, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/editora/{codigo}";
+        }
         er.save(editora);
-        return "redirect:/editora/" + codigo;
+        attributes.addAttribute("mensagem", "Editora editada com sucesso!");
+        return "redirect:/editora/{codigo}";
     }
 }

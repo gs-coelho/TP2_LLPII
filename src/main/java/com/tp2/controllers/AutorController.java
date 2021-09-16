@@ -4,10 +4,14 @@ import com.tp2.models.Autor;
 import com.tp2.repository.AutorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 public class AutorController {
@@ -24,8 +28,13 @@ public class AutorController {
     }
 
     @RequestMapping(value = "/autor", method = RequestMethod.POST)
-    public String cadastraAutor(Autor autor){
+    public String cadastraAutor(@Valid Autor autor, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/autor";
+        }
         ar.save(autor);
+        attributes.addAttribute("mensagem", "Autor adicionado com sucesso!");
         return "redirect:/autor";
     }
 
@@ -38,8 +47,14 @@ public class AutorController {
     }
 
     @RequestMapping(value = "/autor/{codigo}", method = RequestMethod.POST)
-    public String editarAutorPost(@PathVariable("codigo") long codigo, Autor autor){
+    public String editarAutorPost(@PathVariable("codigo") long codigo, @Valid Autor autor, BindingResult result, RedirectAttributes attributes){
+        if(result.hasErrors()){
+            attributes.addAttribute("mensagem", "Verifique os campos!");
+            return "redirect:/autor/{codigo}";
+        }
         ar.save(autor);
-        return "redirect:/autor/" + codigo;
+        attributes.addAttribute("mensagem", "Autor editado com sucesso!");
+        return "redirect:/autor/{codigo}";
     }
+
 }

@@ -4,17 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
+
 
 @Entity
 public class Autor implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long codigo;
 
+    @NotEmpty
     private String nome;
+
+
     private Date dtNasc;
     private String localNasc;
 
