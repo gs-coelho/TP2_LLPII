@@ -3,15 +3,17 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
+    <meta charset="UTF-8">
     <title>Biblioteca</title>
 </head>
 
     <body>
+    <div id="menu">
     <h1>Gerenciador de Biblioteca</h1>
-    <a href=formEditora.html><button>Gerenciar Editoras</button></a>
-    <a href="formAutor.html"><button>Gerenciar Autoras</button></a>
-    <a href="formGene.html"><button>Gerenciar Gêneros</button></a>
-
+    <a href="/cadastrarEditora"><h3>Gerenciar Editoras</h3></a>
+    <a href="/cadastrarAutor"><h3>Gerenciar Autoras</h3></a>
+    <a href="/cadastrarGenero"><h3>Gerenciar Gêneros</h3></a>
+    </div>
 
     <h2>Cadastre um livro</h2>
         <form method="post">
