@@ -51,6 +51,6 @@ public class EditoraController {
     @RequestMapping(value = "/editora/{codigo}", method = RequestMethod.POST)
     public String editarEditoraPost(@PathVariable("codigo") long codigo, Editora editora){
         er.save(editora);
-        return "redirect:/editora";
+        return "redirect:/editora/" + codigo;
     }
 }

@@ -40,6 +40,6 @@ public class AutorController {
     @RequestMapping(value = "/autor/{codigo}", method = RequestMethod.POST)
     public String editarAutorPost(@PathVariable("codigo") long codigo, Autor autor){
         ar.save(autor);
-        return "redirect:/autor";
+        return "redirect:/autor/" + codigo;
     }
 }
