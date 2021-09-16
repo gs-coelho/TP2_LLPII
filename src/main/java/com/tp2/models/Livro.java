@@ -1,9 +1,6 @@
 package com.tp2.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -17,10 +14,16 @@ public class Livro implements Serializable {
 
     private String titulo;
     private String isbn;
-    private Autor autores;
-    private Editora editora;
-    private Genero genero;
     private int numPaginas;
+
+    @ManyToOne
+    private Autor autores;
+
+    @ManyToOne
+    private Editora editora;
+
+    @ManyToOne
+    private Genero genero;
 
     public long getCodigo() {
         return codigo;
@@ -46,6 +49,14 @@ public class Livro implements Serializable {
         this.isbn = isbn;
     }
 
+    public int getNumPaginas() {
+        return numPaginas;
+    }
+
+    public void setNumPaginas(int numPaginas) {
+        this.numPaginas = numPaginas;
+    }
+
     public Autor getAutores() {
         return autores;
     }
@@ -68,13 +79,5 @@ public class Livro implements Serializable {
 
     public void setGenero(Genero genero) {
         this.genero = genero;
-    }
-
-    public int getNumPaginas() {
-        return numPaginas;
-    }
-
-    public void setNumPaginas(int numPaginas) {
-        this.numPaginas = numPaginas;
     }
 }

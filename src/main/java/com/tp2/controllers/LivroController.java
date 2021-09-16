@@ -40,7 +40,7 @@ public class LivroController {
     @RequestMapping("/{codigo}")
     public ModelAndView detalhesLivro(@PathVariable("codigo") long codigo){
         Livro livro = lr.findByCodigo(codigo);
-        ModelAndView mv = new ModelAndView("editareLivro");
+        ModelAndView mv = new ModelAndView("livro/editarLivro");
         mv.addObject("livro", livro);
 
         return mv;
