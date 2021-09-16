@@ -59,4 +59,10 @@ public class AutorController {
         return "redirect:/autor/{codigo}";
     }
 
+    @RequestMapping("/autor/deletar")
+    public String deletarAutor(long codigo){
+        Autor autor = ar.findByCodigo(codigo);
+        ar.delete(autor);
+        return "redirect:/autor";
+    }
 }
