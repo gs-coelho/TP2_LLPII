@@ -30,11 +30,11 @@ public class AutorController {
     @RequestMapping(value = "/autor", method = RequestMethod.POST)
     public String cadastraAutor(@Valid Autor autor, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addAttribute("mensagem", "Verifique os campos!");
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
             return "redirect:/autor";
         }
         ar.save(autor);
-        attributes.addAttribute("mensagem", "Autor adicionado com sucesso!");
+        attributes.addFlashAttribute("mensagem", "Autor adicionado com sucesso!");
         return "redirect:/autor";
     }
 
@@ -49,11 +49,11 @@ public class AutorController {
     @RequestMapping(value = "/autor/{codigo}", method = RequestMethod.POST)
     public String editarAutorPost(@PathVariable("codigo") long codigo, @Valid Autor autor, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addAttribute("mensagem", "Verifique os campos!");
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
             return "redirect:/autor/{codigo}";
         }
         ar.save(autor);
-        attributes.addAttribute("mensagem", "Autor editado com sucesso!");
+        attributes.addFlashAttribute("mensagem", "Autor editado com sucesso!");
         return "redirect:/autor/{codigo}";
     }
 

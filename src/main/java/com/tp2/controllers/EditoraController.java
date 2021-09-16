@@ -30,11 +30,11 @@ public class EditoraController {
     @RequestMapping(value = "/editora", method = RequestMethod.POST)
     public String cadastraEditora(@Valid Editora editora, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addAttribute("mensagem", "Verifique os campos!");
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
             return "redirect:/editora";
         }
         er.save(editora);
-        attributes.addAttribute("mensagem", "Editora adicionada com sucesso!");
+        attributes.addFlashAttribute("mensagem", "Editora adicionada com sucesso!");
         return "redirect:/editora";
     }
 
@@ -49,11 +49,11 @@ public class EditoraController {
     @RequestMapping(value = "/editora/{codigo}", method = RequestMethod.POST)
     public String editarEditoraPost(@PathVariable("codigo") long codigo, @Valid Editora editora, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addAttribute("mensagem", "Verifique os campos!");
+            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
             return "redirect:/editora/{codigo}";
         }
         er.save(editora);
-        attributes.addAttribute("mensagem", "Editora editada com sucesso!");
+        attributes.addFlashAttribute("mensagem", "Editora editada com sucesso!");
         return "redirect:/editora/{codigo}";
     }
 }
