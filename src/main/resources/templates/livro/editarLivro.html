@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="styles/geral.css"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -15,34 +16,67 @@
 
 </head>
 <body>
-<div id="menu">
-    <h1>Gerenciador de Biblioteca</h1>
-    <h3><a class="waves-effect waves-light btn" href="/genero">Gerenciar Gêneros</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/autor">Gerenciar Autores</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/editora">Gerenciar Editoras</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/livro">/livro</a></h3>
-</div>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Gerenciador de Biblioteca</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/livro">Livros</a></li>
+                <li><a href="/autor">Autores</a></li>
+                <li><a href="/editora">Editoras</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
 <div class="container">
-<h2>Edite um livro</h2>
-<form method="post">
-    Título<input type="text" value="" name="nome"/>
+    <h1>Editar livro</h1>
 
-    Autor<select name="autor">
-    <option value="valor1">Valor 1</option>
-</select>
-    Editora<select name="editora">
-    <option value="valor1">Valor 1</option>
-</select>
-    Gênero<select name="genero">
-    <option value="valor1">Valor 1</option>
-</select>
+    <p>Título atual: <span th:text="${livro.getTitulo()}"></span></p>
+    <p>Autor atual: <span th:text="${livro.getAutor().getNome()}"></span></p>
+    <p>Editora atual: <span th:text="${livro.getEditora().getNome()}"></span></p>
+    <p>Gênero atual: <span th:text="${livro.getGenero().getNome()}"></span></p>
+    <p>Isbn atual: <span th:text="${livro.getIsbn()}"></span></p>
+    <p>Número de páginas atual: <span th:text="${livro.getNumPaginas()}"></span></p>
 
-    ISBN<input type="text" value="" name="isbn"/>
-    Número de Páginas<input type="number" value="" name="numPaginas"/>
-    <button class="waves-effect waves-light btn" type="submit">Salvar</button>
-</form>
+    <form method="POST">
+        Título<input type="text" value="" name="nome"/>
+
+        Autor<select name="nome" class="select.browser-default" >
+        <option th:each="autor:${autoresSelect}"
+
+                th:text="${autor.getNome()}"></option>
+    </select>
+
+        Editora<select name="nome" class="select.browser-default">
+        <option th:each="editora:${editorasSelect}"
+                th:text="${editora.getNome()}"></option>
+    </select>
+
+        Gênero<select name="nome" class="select.browser-default">
+        <option th:each="genero:${generosSelect}"
+
+                th:text="${genero.getNome()}">Gênero</option>
+    </select>
+
+        ISBN<input type="text" value="" name="nome"/>
+
+        Número de Páginas<input type="text" name="nome"/>
+
+        <div class="row">
+            <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+        </div>
+    </form>
 </div>
+</main>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+
+<footer>
+    <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
+    <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
+    <p>INF3</p>
+</footer>
+
 </body>
 </html>
