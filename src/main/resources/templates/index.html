@@ -8,26 +8,36 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
-
+    <link type="text/css" rel="stylesheet" href="styles/geral.css"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <title>Gerenciador de Biblioteca</title>
+    <title>Biblioteca</title>
 </head>
 <body>
-    <h1>Gerenciador de Biblioteca</h1>
-        <h3><a class="waves-effect waves-light btn" href="/genero">Gerenciar Gêneros</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/autor">Gerenciar Autores</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/editora">Gerenciar Editoras</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/livro">Gerenciar Livros</a></h3>
-    </div>
+<header>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Gerenciador de Biblioteca</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/genero">Gêneros</a></li>
+                <li><a href="/autor">Autores</a></li>
+                <li><a href="/editora">Editoras</a></li>
+                <li><a href="/livro">Livros</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
     <h2>Sejam Bem-Vindos ao Gerenciador de Biblioteca!</h2>
-    <p>Está aplicação foi criada através da framework Java chamada Spring Boot.</p>
+    <p id="texto">Está aplicação foi criada através da framework Java chamada Spring Boot.</p>
 
 
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+<footer>
+    <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
+    <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
+    <p>INF3</p>
+</footer>
 </body>
-
 </html>

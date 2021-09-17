@@ -17,7 +17,7 @@
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Gerenciador de Biblioteca</a>
+                <a href="/" class="brand-logo">Gerenciador de Biblioteca</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/livro">Livros</a></li>
                     <li><a href="/autor">Autores</a></li>
@@ -26,38 +26,59 @@
             </div>
         </nav>
     </header>
-
     <main>
-    <div class="container">
-        <h1>Cadastre um Gênero</h1>
-        <!-- adicionar autor-->
-        <form method="POST">
-            Gênero<input type="text" value="" name="nome"/>
-            <button type="submit" class="waves-effect waves-light btn">Salvar</button>
-        </form>
+        <div class="container">
+            <h3>Cadastre um Gênero</h3>
+            <form method="POST">
+                <div class="row">
+                    <p class="col s2">Nome do Gênero:</p>
+                    <input class="input-field col s10" type="text" value="" name="nome"/>
+                </div>
+                <div class="row">
+                    <button type="submit" class="waves-effect waves-light btn col offset-l4 s4">Salvar</button>
+                </div>                
+            </form>
+        </div>
+        
+        <div class="container">
+            <th:block th:include="mensagemValidacao"></th:block>
+        </div>
+        
+        <div class="container">
+            <h3>Tabela dos Gêneros</h3>
+             <table>
+                 <thead>
+                    <tr>
+                        <th>Gênero</th>
+                        <th>Editar</th>
+                        <th>Deletar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="genero:${generos}">
+                        <!-- tabela-->
+                        <td><span th:text="${genero.nome}"></span></td>
+                        <td>
+                            <a th:href="${(#mvc.url('GC#editarGenero').arg(0, genero.codigo)).build()}">
+                                <button class="waves-effect waves-light btn" id="botaoEditar" type="submit" >
+                                    <i class="material-icons">edit</i>
+                                </button>
+                            </a>
+                        </td>
+                        <td>
+                            <a th:href="${(#mvc.url('GC#deletarGenero').arg(0, genero.codigo)).build()}">
+                                <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <h2>Tabela dos Gêneros</h2>
-         <table>
-             <thead>
-                <tr>
-                    <th>Gênero</th>
-                    <th>Editar</th>
-                    <th>Deletar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="genero:${generos}">
-                    <!-- tabela-->
-                    <td><span th:text="${genero.nome}"></span></td>
-                    <td><a href="/editarLivro"><button class="waves-effect waves-light btn" id="botaoEditar" type="submit">Editar</button></a></td>
-                    <td><a><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></a></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     </main>
     <footer>
         <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
