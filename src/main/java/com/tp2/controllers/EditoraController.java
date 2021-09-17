@@ -35,6 +35,7 @@ public class EditoraController {
         }
         er.save(editora);
         attributes.addFlashAttribute("mensagem", "Editora adicionada com sucesso!");
+
         return "redirect:/editora";
     }
 

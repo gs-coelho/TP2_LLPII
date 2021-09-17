@@ -8,25 +8,33 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="styles/geral.css"/>
+
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Editora</title>
 </head>
 <body>
-    <div id="menu">
-    <h1>Gerenciador de Biblioteca</h1>
-    <h3><a class="waves-effect waves-light btn" href="/genero">Gerenciar Gêneros</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/autor">Gerenciar Autores</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/livro">Gerenciar Livros</a></h3>
-
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Gerenciador de Biblioteca</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/livro">Livros</a></li>
+                    <li><a href="/autor">Autores</a></li>
+                    <li><a href="/genero">Gêneros</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
     </div>
     <div class="container">
-    <h2>Cadastrar uma Editora</h2>
-    <!-- adicionar editora-->
-    <form action="">
-        Editora<input type="text" value="" name="editora"/>
-    </form>
-    <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+        <h1>Cadastrar uma Editora</h1>
+        <!-- adicionar editora-->
+        <form method="POST">
+            Editora<input type="text" value="" name="nome"/>
+            <button type="submit" class="waves-effect waves-light btn">Salvar</button>
+        </form>
 
 
     <h2>Tabela das Editoras</h2>
@@ -44,8 +52,8 @@
         <!-- tabela-->
 
         <td><span th:text="${editora.nome}"></span></td>
-        <td><a href="/editarLivro" class="waves-effect waves-light btn"><button id="botaoEditar" type="submit">Editar</button></a></td>
-        <td><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></td>
+        <td><a href="/editarLivro" ><button type="submit" class="waves-effect waves-light btn">Editar</button></a></td>
+        <td><a href="/editarLivro" ><button type="submit" class="waves-effect waves-light btn">Deletar</button></a></td>
         </tr>
         </tbody>
         </table>
@@ -53,5 +61,11 @@
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
     <script type="text/javascript "src="materialize/js/materialize.min.js"></script>
+
+    <footer>
+        <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
+        <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
+        <p>INF3</p>
+    </footer>
 </body>
 </html>
