@@ -11,26 +11,47 @@
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Biblioteca</title>
+    <title>Gêneros</title>
 
 </head>
 <body>
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Gerenciador de Biblioteca</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/livro">Livros</a></li>
+                    <li><a href="/autor">Autores</a></li>
+                    <li><a href="/genero">Gêneros</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-    <h1>Gerenciador de Biblioteca</h1>
-    <h3><a class="waves-effect waves-light btn" href="/genero">Gerenciar Gêneros</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/autor">Gerenciar Autores</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/editora">/editora</a></h3>
-    <h3><a class="waves-effect waves-light btn" href="/livro">/livro</a></h3>
+    <main>
+        <div class="container">
+            <h2>Editar Gênero</h2>
 
-</div>
-<div class="container">
-<h2>Edite um Gênero</h2>
-<form action="">
-    Gênero<input type="text" value="" name="genero"/>
-</form>
-<button class="waves-effect waves-light btn" type="submit">Salvar</button>
+            <p>Nome atual: <span th:text="${genero.getNome()}"></span></p>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+            <form method="POST">
+                Gênero<input type="text" value="" name="genero"/>
+                <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+            </form>
+
+            <div class="container">
+                <th:block th:include="mensagem"></th:block>
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+    </main>
+    <footer>
+        <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
+        <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
+        <p>INF3</p>
+    </footer>
 </body>
 </html>
