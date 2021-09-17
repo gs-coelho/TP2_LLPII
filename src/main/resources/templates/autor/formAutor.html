@@ -14,41 +14,59 @@
     <title>Autores</title>
 </head>
 <body>
-    <div id="menu">
-    <h1>Gerenciador de Biblioteca</h1>
-        <h3><a class="waves-effect waves-light btn" href="/genero">Gerenciar Gêneros</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/autor">Gerenciar Autores</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/editora">Gerenciar Editoras</a></h3>
-        <h3><a class="waves-effect waves-light btn" href="/livro">Gerenciar Livros</a></h3>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">Gerenciador de Biblioteca</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/livro">Livro</a></li>
+                <li><a href="/autor">Autor</a></li>
+                <li><a href="/editora">Editora</a></li>
+                <li><a href="/genero">Gênero</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h3>Cadastre um Autor</h3>
+        <form method="POST">
+            <div class="row">
+                <p class="col s2">Nome do Autor:</p>
+                <input class="input-field col s10" type="text" value="" name="nome"/>
+            </div>
+            <div class="row">
+                <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+            </div>
+        </form>
     </div>
-    <div  class="container">
-    <h2>Cadastre uma Autor</h2>
-    <!-- adicionar autor-->
-    <form action="">
-        Autor<input type="text" value="" name="autor"/>
-    </form>
-    <button type="submit">Salvar</button>
 
-    <h2>Tabela das Autores</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>Autores</th>
-            <th>Editar</th>
-            <th>Apagar</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+        <th:block th:include="mensagemValidacao"></th:block>
+    </div>
 
-    <tr th:each="autor: ${autores}">
-        <!-- tabela-->
-        <td><span th:text="${autor.nome}"></span></td>
-        <td><a href="/editarLivro"><button class="waves-effect waves-light btn" id="botaoEditar" type="submit">Editar</button></a></td>
-        <td><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></td>
-    </tr>
-        </tbody>
-    </table>
-
+    <div class="container">
+        <h3>Tabela das Autores</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Autores</th>
+                    <th>Editar</th>
+                    <th>Apagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="autor: ${autores}">
+                    <td><span th:text="${autor.nome}"></span></td>
+                    <td>
+                        <a th:href="${(#mvc.url('AC#editarAutor').arg(0, autor.codigo)).build()}">
+                            <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
+                                <i class="material-icons">edit</i>
+                            </button>
+                        </a>
+                    </td>
+                    <td><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
