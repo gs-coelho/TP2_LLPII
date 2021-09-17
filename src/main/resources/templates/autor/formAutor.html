@@ -63,7 +63,13 @@
                             </button>
                         </a>
                     </td>
-                    <td><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></td>
+                    <td>
+                        <a th:href="${(#mvc.url('AC#deletarAutor').arg(0, autor.codigo)).build()}">
+                            <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </a>
+                    </td>
                 </tr>
             </tbody>
         </table>
