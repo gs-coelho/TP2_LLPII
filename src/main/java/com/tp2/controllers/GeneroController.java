@@ -24,13 +24,13 @@ public class GeneroController {
     @RequestMapping(value = "/genero", method = RequestMethod.POST)
     public String cadastraGenero(@Valid Genero genero, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addAttribute("mensagem", "Verifique os campos!");
+            attributes.addAttribute("mensagemValidacao", "Verifique os campos!");
 
             return "redirect:/genero";
         }
 
         gr.save(genero);
-        attributes.addFlashAttribute("mensagem", "Gênero adicionado com sucesso!");
+        attributes.addFlashAttribute("mensagemValidacao", "Gênero adicionado com sucesso!");
 
         return "redirect:/genero";
     }
@@ -55,12 +55,12 @@ public class GeneroController {
     @RequestMapping(value = "/genero/{codigo}", method = RequestMethod.POST)
     public String editarGeneroPost(@PathVariable("codigo") long codigo, @Valid Genero genero, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addFlashAttribute("mensagem", "Verifique os campos!");
+            attributes.addFlashAttribute("mensagemValidacao", "Verifique os campos!");
             return "redirect:/genero/{codigo}";
         }
 
         gr.save(genero);
-        attributes.addFlashAttribute("mensagem", "Gênero editado com sucesso!");
+        attributes.addFlashAttribute("mensagemValidacao", "Gênero editado com sucesso!");
 
         return "redirect:/genero/" + codigo;
     }

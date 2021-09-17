@@ -31,7 +31,7 @@
 
     <main>
         <div class="container">
-            <h2>Editar Gênero</h2>
+            <h1>Editar Gênero</h1>
 
             <p>Nome atual: <span th:text="${genero.getNome()}"></span></p>
 
@@ -41,7 +41,7 @@
             </form>
 
             <div class="container">
-                <th:block th:include="mensagem"></th:block>
+                <th:block th:include="mensagemValidacao"></th:block>
             </div>
 
         </div>
