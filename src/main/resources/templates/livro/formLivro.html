@@ -28,31 +28,32 @@
         </nav>
     </header>
 
+    <main>
     <div class="container">
     <h2>Cadastrar um livro</h2>
         <form method="POST">
             Título<input type="text" value="" name="nome"/>
 
             Autor<select name="" class="select.browser-default" >
-            <option th:each="autor : ${autoresSelect}"
+            <option th:each="autor:${autoresSelect}"
 
-                    th:text="#{|autor.${autor.nome}|}"></option>
+                    th:text="${autor.getNome()}"></option>
             </select>
 
             Editora<select name="editora" class="select.browser-default">
-            <option th:each="editora : ${editorasSelect}"
-                    th:text="#{|editora.${editora.nome}|}"></option>
+            <option th:each="editora:${editorasSelect}"
+                    th:text="${editora.getNome()}"></option>
             </select>
 
             Gênero<select name="genero" class="select.browser-default">
-            <option th:each="genero : ${generosSelect}"
+            <option th:each="genero:${generosSelect}"
 
-                    th:text="#{|genero.${genero.nome}|}">Gênero</option>
+                    th:text="${genero.getNome()}">Gênero</option>
             </select>
 
             ISBN<input type="text" value="" name="nome"/>
-            ISBN<input type="text" value="" name="nome"/>
-            Número de Páginas<input type="number" name="nome"/>
+
+            Número de Páginas<input type="text" name="nome"/>
 
             <div class="row">
                 <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
@@ -77,7 +78,7 @@
                 <th>ISBN</th>
                 <th>Número de Páginas</th>
                 <th>Editar</th>
-                <th>Apagar</th>
+                <th>Deletar</th>
     </tr>
     </thead>
 
@@ -102,7 +103,7 @@
     </tbody>
     </table>
     </div>
-
+    </main>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     <footer>

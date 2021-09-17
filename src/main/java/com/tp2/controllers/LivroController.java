@@ -36,14 +36,14 @@ public class LivroController {
     private GeneroRepository gr;
 
     @RequestMapping(value = "/livro", method = RequestMethod.POST)
-    public String cadastraLivro(@Valid String isbn, @Valid String titulo, @Valid int numPaginas, @Valid String autor, @Valid String editora, @Valid String genero, BindingResult result, RedirectAttributes attributes){
+    public String cadastraLivro(@Valid String isbn, @Valid String titulo, @Valid String numPaginas, @Valid String autor, @Valid String editora, @Valid String genero, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
             attributes.addAttribute("mensagem", "Verifique os campos!");
 
             return "redirect:/livro";
         }
 
-        Livro livro = new Livro(isbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
+        Livro livro = new Livro(isbn, titulo, Integer.parseInt(numPaginas), ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
         lr.save(livro);
 
         attributes.addFlashAttribute("mensagem", "Livro adicionado com sucesso!");
