@@ -28,6 +28,7 @@
         </nav>
     </header>
 
+    <main>
     <div class="container">
         <h1>Cadastre um Autor</h1>
         <form method="POST">
@@ -66,7 +67,7 @@
                     <td>
                         <a th:href="${(#mvc.url('AC#deletarAutor').arg(0, autor.codigo)).build()}">
                             <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
-                                <i class="material-icons">delete</i>
+                                Deletar
                             </button>
                         </a>
                     </td>
@@ -74,6 +75,7 @@
             </tbody>
         </table>
     </div>
+    </main>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 
