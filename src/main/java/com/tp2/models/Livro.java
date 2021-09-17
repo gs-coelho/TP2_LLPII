@@ -3,6 +3,7 @@ package com.tp2.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Livro implements Serializable {
@@ -14,29 +15,26 @@ public class Livro implements Serializable {
     @NotEmpty
     private String titulo;
 
-    @NotEmpty
+    @NotNull
     private int numPaginas;
 
     @ManyToOne
-    @NotEmpty
     private Autor autor;
 
     @ManyToOne
-    @NotEmpty
     private Editora editora;
 
     @ManyToOne
-    @NotEmpty
     private Genero genero;
 
-    public Livro(String isbn, String titulo, int numPaginas, Autor autor, Editora editora, Genero genero) {
+    /*public Livro(String isbn, String titulo, int numPaginas, Autor autor, Editora editora, Genero genero) {
         this.isbn = isbn;
         this.titulo = titulo;
         this.numPaginas = numPaginas;
         this.autor = autor;
         this.editora = editora;
         this.genero = genero;
-    }
+    }*/
 
     public String getTitulo() {
         return titulo;

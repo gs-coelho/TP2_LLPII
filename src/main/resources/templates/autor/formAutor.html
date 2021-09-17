@@ -61,13 +61,15 @@
                     <td><span th:text="${autor.nome}"></span></td>
                     <td>
                         <a th:href="${(#mvc.url('AC#editarAutor').arg(0, autor.codigo)).build()}">
-                            <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">Editar</button>
+                            <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
+                                <i class="material-icons">edit</i>
+                            </button>
                         </a>
                     </td>
                     <td>
                         <a th:href="${(#mvc.url('AC#deletarAutor').arg(0, autor.codigo)).build()}">
                             <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
-                                Deletar
+                                <i class="material-icons">delete</i>
                             </button>
                         </a>
                     </td>

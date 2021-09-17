@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import org.springframework.validation.ObjectError;
 
 @Controller
 public class LivroController {
@@ -36,14 +37,22 @@ public class LivroController {
     private GeneroRepository gr;
 
     @RequestMapping(value = "/livro", method = RequestMethod.POST)
-    public String cadastraLivro(@Valid String isbn, @Valid String titulo, @Valid String numPaginas, @Valid String autor, @Valid String editora, @Valid String genero, BindingResult result, RedirectAttributes attributes){
+    public String cadastraLivro(@Valid Livro livro, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addAttribute("mensagem", "Verifique os campos!");
-
+            String resposta = "";
+            
+            for (ObjectError erro: result.getAllErrors()){
+                resposta += erro.getObjectName() + " - " + erro.getDefaultMessage() + "\n";
+            }
+            
+            attributes.addFlashAttribute("mensagem", resposta);
             return "redirect:/livro";
         }
-
-        Livro livro = new Livro(isbn, titulo, Integer.parseInt(numPaginas), ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
+        
+        /*ar.save(livro.getAutor());
+        er.save(livro.getEditora());
+        gr.save(livro.getGenero());*/
+        //Livro livro = new Livro(isbn, titulo, Integer.parseInt(numPaginas), ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
         lr.save(livro);
 
         attributes.addFlashAttribute("mensagem", "Livro adicionado com sucesso!");
@@ -83,20 +92,31 @@ public class LivroController {
     @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.GET)
     public ModelAndView editarLivro(@PathVariable("isbn") String isbn){
         Livro livro = lr.findByIsbn(isbn);
+        Iterable<Genero> generosSelect = gr.findAll();
+        Iterable<Autor> autoresSelect = ar.findAll();
+        Iterable<Editora> editorasSelect = er.findAll();
         ModelAndView mv = new ModelAndView("livro/editarLivro");
         mv.addObject("livro", livro);
+        mv.addObject("autoresSelect", autoresSelect);
+        mv.addObject("editorasSelect", editorasSelect);
+        mv.addObject("generosSelect", generosSelect);
 
         return mv;
     }
 
     @RequestMapping(value = "/livro/{isbn}", method = RequestMethod.POST)
-    public String editarLivroPost(@PathVariable("codigo") String isbn, @Valid String newIsbn, @Valid String titulo, @Valid int numPaginas, @Valid String autor, @Valid String editora, @Valid String genero, BindingResult result, RedirectAttributes attributes){
+    public String editarLivroPost(@PathVariable("isbn") String isbn, @Valid Livro livro, BindingResult result, RedirectAttributes attributes){
         if(result.hasErrors()){
-            attributes.addAttribute("mensagem", "Verifique os campos");
-
+            String resposta = "";
+            
+            for (ObjectError erro: result.getAllErrors()){
+                resposta += erro.getObjectName() + " - " + erro.getDefaultMessage() + "\n";
+            }
+            
+            attributes.addFlashAttribute("mensagem", resposta);
             return "redirect:/livro/{isbn}";
         }
-        Livro livro = new Livro(newIsbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
+        //Livro livro = new Livro(newIsbn, titulo, numPaginas, ar.findByNome(autor), er.findByNome(editora), gr.findByNome(genero));
         lr.save(livro);
         attributes.addFlashAttribute("mensagem", "Livro editado com sucesso!");
 

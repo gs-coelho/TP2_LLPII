@@ -18,7 +18,7 @@
     <header>
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Gerenciador de Biblioteca</a>
+                <a href="/" class="brand-logo">Gerenciador de Biblioteca</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/genero">Gêneros</a></li>
                     <li><a href="/autor">Autores</a></li>
@@ -32,28 +32,29 @@
     <div class="container">
     <h2>Cadastrar um livro</h2>
         <form method="POST">
-            Título<input type="text" value="" name="nome"/>
+            Título<input type="text" value="" name="titulo"/>
 
-            Autor<select name="" class="select.browser-default" >
-            <option th:each="autor:${autoresSelect}"
-
+            Autor<select name="autor.codigo" class="select.browser-default">
+            <option th:each="autor: ${autoresSelect}"
+                    th:value="${autor.getCodigo()}"
                     th:text="${autor.getNome()}"></option>
             </select>
 
-            Editora<select name="editora" class="select.browser-default">
+            Editora<select name="editora.codigo" class="select.browser-default">
             <option th:each="editora:${editorasSelect}"
+                    th:value="${editora.getCodigo()}"
                     th:text="${editora.getNome()}"></option>
             </select>
 
-            Gênero<select name="genero" class="select.browser-default">
+            Gênero<select name="genero.codigo" class="select.browser-default">
             <option th:each="genero:${generosSelect}"
-
+                    th:value="${genero.getCodigo()}"
                     th:text="${genero.getNome()}">Gênero</option>
             </select>
 
-            ISBN<input type="text" value="" name="nome"/>
+            ISBN<input type="text" value="" name="isbn"/>
 
-            Número de Páginas<input type="text" name="nome"/>
+            Número de Páginas<input type="text" name="numPaginas"/>
 
             <div class="row">
                 <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
@@ -92,13 +93,19 @@
                 <td><span th:text="${livro.isbn}"></span></td>
                 <td><span th:text="${livro.numPaginas}"></span></td>
                 <td>
-                <a th:href="${(#mvc.url('AC#editarAutor').arg(0, livro.codigo)).build()}">
-                    <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
-                        <i class="material-icons">edit</i>
+                    <a th:href="${(#mvc.url('LC#editarLivro').arg(0, livro.isbn)).build()}">
+                        <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
+                            <i class="material-icons">edit</i>
+                        </button>
+                    </a>
+                </td>
+            <td>
+                <a th:href="${(#mvc.url('LC#deletarLivro').arg(0, livro.isbn)).build()}">
+                    <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
+                        <i class="material-icons">delete</i>
                     </button>
                 </a>
             </td>
-            <td><button class="waves-effect waves-light btn" id="botaoApagar" type="submit">Deletar</button></td>
         </tr>
     </tbody>
     </table>
