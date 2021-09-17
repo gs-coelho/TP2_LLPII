@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"/>
 
 <head>
     <meta charset="UTF-8">
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
     <link type="text/css" rel="stylesheet" href="styles/geral.css"/>
 
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Editora</title>
+    <title>Editoras</title>
 </head>
 <body>
     <header>
@@ -27,7 +27,7 @@
             </div>
         </nav>
     </header>
-    </div>
+
     <div class="container">
         <h1>Cadastrar uma Editora</h1>
         <!-- adicionar editora-->
@@ -36,27 +36,30 @@
             <button type="submit" class="waves-effect waves-light btn">Salvar</button>
         </form>
 
+        <div class="container">
+            <th:block th:include="mensagem"></th:block>
+        </div>
 
     <h2>Tabela das Editoras</h2>
+
     <table>
         <thead>
-        <tr>
-            <th>Editora</th>
-            <th>Editar</th>
-            <th>Apagar</th>
-        </tr>
-        </thead>
+            <tr>
+                <th>Editora</th>
+                <th>Editar</th>
+                <th>Apagar</th>
+            </tr>
+            </thead>
         <tbody>
 
-    <tr th:each="editora:${editoras}">
-        <!-- tabela-->
-
-        <td><span th:text="${editora.nome}"></span></td>
-        <td><a href="/editarLivro" ><button type="submit" class="waves-effect waves-light btn">Editar</button></a></td>
-        <td><a href="/editarLivro" ><button type="submit" class="waves-effect waves-light btn">Deletar</button></a></td>
-        </tr>
+        <tr th:each="editora:${editoras}">
+            <!-- tabela-->
+                <td><span th:text="${editora.nome}"></span></td>
+                <td><a href="/editarLivro" ><button type="submit" class="waves-effect waves-light btn">Editar</button></a></td>
+                <td><a href="/editarLivro" ><button type="submit" class="waves-effect waves-light btn">Deletar</button></a></td>
+            </tr>
         </tbody>
-        </table>
+    </table>
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
