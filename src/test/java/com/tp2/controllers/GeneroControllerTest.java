@@ -84,7 +84,7 @@ class GeneroControllerTest {
     @Test
     @Order(4)
     @DisplayName("Busca de gênero específico")
-    void editarGeneroGet() throws Exception{
+    void editarGenero1Get() throws Exception{
         Genero esperado = new Genero();
         esperado.setNome("Gênero de teste");
         gr.save(esperado);
