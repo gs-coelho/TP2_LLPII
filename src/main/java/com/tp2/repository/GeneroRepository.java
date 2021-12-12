@@ -5,6 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface GeneroRepository extends CrudRepository<Genero,String> {
         Genero findByCodigo(long codigo);
-
         Genero findByNome(String nome);
+        boolean existsByCodigo(long codigo);
 }
