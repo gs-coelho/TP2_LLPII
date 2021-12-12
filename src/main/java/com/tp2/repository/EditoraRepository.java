@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface EditoraRepository extends CrudRepository<Editora, String> {
     Editora findByCodigo(long codigo);
     Editora findByNome(String nome);
+    boolean existsByCodigo(long codigo);
 }
