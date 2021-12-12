@@ -6,4 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface AutorRepository extends CrudRepository<Autor, String> {
     Autor findByCodigo(long codigo);
     Autor findByNome(String nome);
+    boolean existsByCodigo(long codigo);
 }
