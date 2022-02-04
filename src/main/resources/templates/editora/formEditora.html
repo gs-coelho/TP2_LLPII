@@ -22,69 +22,73 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/livro">Livros</a></li>
                     <li><a href="/autor">Autores</a></li>
+                    <li class="active"><a href="/editora">Editoras</a></li>
                     <li><a href="/genero">Gêneros</a></li>
                 </ul>
             </div>
         </nav>
     </header>
     <main>
-        <div class="container">
-            <h1>Cadastrar uma Editora</h1>
-            <!-- adicionar editora-->
-            <form method="POST">
-                <div class="row">
-                    <p class="col s2">Nome da Editora:</p>
-                    <input class="input-field col s10" type="text" value="" name="nome"/>
+        <div class="row">
+            <div class="col s12 m12 l3">
+                <div class="meuContainer meuForm">
+                    <h3>Cadastrar uma Editora</h3>
+                    <form method="POST">
+                        <div class="row">
+                            <p class="col s12">Nome da Editora:</p>
+                            <input class="input-field col s12" type="text" value="" name="nome"/>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="waves-effect waves-light btn col offset-l4 s4">Salvar</button>
+                        </div>
+                    </form>
+                    <div>
+                        <th:block th:include="mensagemValidacao"></th:block>
+                    </div>
                 </div>
-                <div class="row">
-                    <button type="submit" class="waves-effect waves-light btn col offset-l4 s4">Salvar</button>
+            </div>
+
+            <div class="col s12 m12 l9">
+                <div class="meuContainer tabela">
+                    <h3>Tabela das Editoras</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Editora</th>
+                            <th>Editar</th>
+                            <th>Apagar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="editora: ${editoras}">
+                            <td><span th:text="${editora.nome}"></span></td>
+                            <td>
+                                <a th:href="${(#mvc.url('EC#editarEditora').arg(0, editora.codigo)).build()}">
+                                    <button class="waves-effect waves-light btn" id="botaoEditar" type="submit" >
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="${(#mvc.url('EC#deletarEditora').arg(0, editora.codigo)).build()}">
+                                    <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </form>
+            </div>
         </div>
-
-        <div class="container">
-            <th:block th:include="mensagemValidacao"></th:block>
-        </div>
-
-        <div class="container">
-            <h2>Tabela das Editoras</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Editora</th>
-                        <th>Editar</th>
-                        <th>Apagar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="editora: ${editoras}">
-                        <td><span th:text="${editora.nome}"></span></td>
-                        <td>
-                            <a th:href="${(#mvc.url('EC#editarEditora').arg(0, editora.codigo)).build()}">
-                                <button class="waves-effect waves-light btn" id="botaoEditar" type="submit" >
-                                    <i class="material-icons">edit</i>
-                                </button>
-                            </a>
-                        </td>
-                        <td>
-                            <a th:href="${(#mvc.url('EC#deletarEditora').arg(0, editora.codigo)).build()}">
-                                <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
-                                    <i class="material-icons">delete</i>
-                                </button>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
-        <script type="text/javascript "src="materialize/js/materialize.min.js"></script>
     </main>
     <footer>
         <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
         <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
         <p>INF3</p>
     </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js "></script>
+    <script type="text/javascript "src="materialize/js/materialize.min.js"></script>
 </body>
 </html>

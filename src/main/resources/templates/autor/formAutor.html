@@ -21,70 +21,75 @@
                 <a href="/" class="brand-logo">Gerenciador de Biblioteca</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/livro">Livros</a></li>
+                    <li class="active"><a href="/autor">Autores</a></li>
                     <li><a href="/editora">Editoras</a></li>
                     <li><a href="/genero">Gêneros</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-
     <main>
-    <div class="container">
-        <h3>Cadastre um Autor</h3>
-        <form method="POST">
-            <div class="row">
-                <p class="col s2">Nome do Autor:</p>
-                <input class="input-field col s10" type="text" value="" name="nome"/>
+        <div class="row">
+            <div class="col s12 m12 l3">
+                <div class="meuContainer meuForm">
+                    <h3>Cadastrar um Autor</h3>
+                    <form method="POST">
+                        <div class="row">
+                            <p class="col s12">Nome do Autor:</p>
+                            <input class="input-field col s12" type="text" value="" name="nome"/>
+                        </div>
+                        <div class="row">
+                            <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+                        </div>
+                    </form>
+                    <div>
+                        <th:block th:include="mensagemValidacao"></th:block>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+
+            <div class="col s12 m12 l9">
+                <div class="meuContainer tabela">
+                    <h3>Tabela dos Autores</h3>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Autores</th>
+                            <th>Editar</th>
+                            <th>Apagar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="autor: ${autores}">
+                            <td><span th:text="${autor.nome}"></span></td>
+                            <td>
+                                <a th:href="${(#mvc.url('AC#editarAutor').arg(0, autor.codigo)).build()}">
+                                    <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="${(#mvc.url('AC#deletarAutor').arg(0, autor.codigo)).build()}">
+                                    <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
-        </form>
-    </div>
-
-    <div class="container">
-        <th:block th:include="mensagemValidacao"></th:block>
-    </div>
-
-    <div class="container">
-        <h2>Tabela dos Autores</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Autores</th>
-                    <th>Editar</th>
-                    <th>Apagar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="autor: ${autores}">
-                    <td><span th:text="${autor.nome}"></span></td>
-                    <td>
-                        <a th:href="${(#mvc.url('AC#editarAutor').arg(0, autor.codigo)).build()}">
-                            <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
-                                <i class="material-icons">edit</i>
-                            </button>
-                        </a>
-                    </td>
-                    <td>
-                        <a th:href="${(#mvc.url('AC#deletarAutor').arg(0, autor.codigo)).build()}">
-                            <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
-                                <i class="material-icons">delete</i>
-                            </button>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        </div>
     </main>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
-
     <footer>
         <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
         <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
         <p>INF3</p>
     </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 </html>

@@ -23,36 +23,41 @@
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/livro">Livros</a></li>
                     <li><a href="/autor">Autores</a></li>
+                    <li><a href="/editora">Editoras</a></li>
                     <li><a href="/genero">Gêneros</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-
     <main>
-    <div class="container">
-    <h1>Editar editora</h1>
+        <div class="container">
+            <h1>Editar editora</h1>
 
-    <p>Nome atual: <span th:text="${editora.nome}"></span></p>
+            <div class="row">
+                <p class="col s12">Nome atual: <span th:text="${editora.nome}"></span></p>
+            </div>
 
-    <form method="POST">
-        Editora<input type="text" value="" name="nome"/>
-        <button class="waves-effect waves-light btn" type="submit">Salvar</button>
-    </form>
-    
-    <div class="container">
-        <th:block th:include="mensagemValidacao"></th:block>
-    </div>
+            <form method="POST">
+                <div class="row">
+                    <p class="col s12 m2">Novo nome:</p>
+                    <input class="col s12 m10" type="text" value="" id="input_nome" name="nome"/>
+                </div>
+                <div class="row">
+                    <button class="waves-effect waves-light btn" type="submit">Salvar</button>
+                </div>
+            </form>
+        </div>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
-    </div>
+        <div class="container">
+            <th:block th:include="mensagemValidacao"></th:block>
+        </div>
     </main>
-
     <footer>
         <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
         <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
         <p>INF3</p>
     </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
 </body>
 </html>

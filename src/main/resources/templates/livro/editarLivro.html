@@ -24,54 +24,67 @@
                 <li><a href="/livro">Livros</a></li>
                 <li><a href="/autor">Autores</a></li>
                 <li><a href="/editora">Editoras</a></li>
+                <li><a href="/genero">Gêneros</a></li>
             </ul>
         </div>
     </nav>
 </header>
 <main>
-<div class="container">
-    <h1>Editar livro</h1>
+    <div class="container">
+        <h1>Editar livro</h1>
 
-    <p>Título atual: <span th:text="${livro.getTitulo()}"></span></p>
-    <p>Autor atual: <span th:text="${livro.getAutor().getNome()}"></span></p>
-    <p>Editora atual: <span th:text="${livro.getEditora().getNome()}"></span></p>
-    <p>Gênero atual: <span th:text="${livro.getGenero().getNome()}"></span></p>
-    <p>Isbn atual: <span th:text="${livro.getIsbn()}"></span></p>
-    <p>Número de páginas atual: <span th:text="${livro.getNumPaginas()}"></span></p>
-
-    <form method="POST">
-        Título<input type="text" value="" name="titulo"/>
-
-            Autor<select name="autor.codigo" class="select.browser-default">
-            <option th:each="autor: ${autoresSelect}"
-                    th:value="${autor.getCodigo()}"
-                    th:text="${autor.getNome()}"></option>
-            </select>
-
-            Editora<select name="editora.codigo" class="select.browser-default">
-            <option th:each="editora:${editorasSelect}"
-                    th:value="${editora.getCodigo()}"
-                    th:text="${editora.getNome()}"></option>
-            </select>
-
-            Gênero<select name="genero.codigo" class="select.browser-default">
-            <option th:each="genero:${generosSelect}"
-                    th:value="${genero.getCodigo()}"
-                    th:text="${genero.getNome()}">Gênero</option>
-            </select>
-
-            ISBN<input type="text" value="" name="isbn"/>
-
-            Número de Páginas<input type="text" name="numPaginas"/>
+        <div>
+            <th:block th:include="mensagemValidacao"></th:block>
+        </div>
 
         <div class="row">
-            <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+            <div class="col s12 m12 l5">
+                <div class="meuForm">
+                    <p>Título atual: <span th:text="${livro.getTitulo()}"></span></p>
+                    <p>Autor atual: <span th:text="${livro.getAutor().getNome()}"></span></p>
+                    <p>Editora atual: <span th:text="${livro.getEditora().getNome()}"></span></p>
+                    <p>Gênero atual: <span th:text="${livro.getGenero().getNome()}"></span></p>
+                    <p>Isbn atual: <span th:text="${livro.getIsbn()}"></span></p>
+                    <p>Número de páginas atual: <span th:text="${livro.getNumPaginas()}"></span></p>
+                </div>
+            </div>
+
+            <div class="col s12 m12 l7">
+                <div class="tabela">
+                    <form method="POST">
+                        Título<input type="text" value="" name="titulo"/>
+
+                        Autor<select name="autor.codigo" class="select.browser-default">
+                        <option th:each="autor: ${autoresSelect}"
+                                th:value="${autor.getCodigo()}"
+                                th:text="${autor.getNome()}"></option>
+                    </select>
+
+                        Editora<select name="editora.codigo" class="select.browser-default">
+                        <option th:each="editora:${editorasSelect}"
+                                th:value="${editora.getCodigo()}"
+                                th:text="${editora.getNome()}"></option>
+                    </select>
+
+                        Gênero<select name="genero.codigo" class="select.browser-default">
+                        <option th:each="genero:${generosSelect}"
+                                th:value="${genero.getCodigo()}"
+                                th:text="${genero.getNome()}">Gênero</option>
+                    </select>
+
+                        ISBN<input type="text" value="" name="isbn"/>
+
+                        Número de Páginas<input type="text" name="numPaginas"/>
+
+                        <div class="row">
+                            <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </form>
-    <div class="container">
-        <th:block th:include="mensagemValidacao"></th:block>
     </div>
-</div>
+
 </main>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>

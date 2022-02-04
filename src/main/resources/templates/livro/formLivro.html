@@ -14,109 +14,115 @@
     <title>Livros</title>
 
 </head>
-    <body>
+<body>
     <header>
         <nav>
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo">Gerenciador de Biblioteca</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="/genero">Gêneros</a></li>
+                    <li class="active"><a href="/livro">Livros</a></li>
                     <li><a href="/autor">Autores</a></li>
                     <li><a href="/editora">Editoras</a></li>
+                    <li><a href="/genero">Gêneros</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-
     <main>
-    <div class="container">
-    <h2>Cadastrar um livro</h2>
-        <form method="POST">
-            Título<input type="text" value="" name="titulo"/>
+        <div class="row">
+            <div class="col s12 m12 l3">
+                <div class="meuContainer meuForm">
+                    <h3>Cadastrar um livro</h3>
+                    <form method="POST">
+                        Título<input type="text" value="" name="titulo"/>
 
-            Autor<select name="autor.codigo" class="select.browser-default">
-            <option th:each="autor: ${autoresSelect}"
-                    th:value="${autor.getCodigo()}"
-                    th:text="${autor.getNome()}"></option>
-            </select>
+                        Autor<select name="autor.codigo" class="select.browser-default">
+                        <option th:each="autor: ${autoresSelect}"
+                                th:value="${autor.getCodigo()}"
+                                th:text="${autor.getNome()}"></option>
+                    </select>
 
-            Editora<select name="editora.codigo" class="select.browser-default">
-            <option th:each="editora:${editorasSelect}"
-                    th:value="${editora.getCodigo()}"
-                    th:text="${editora.getNome()}"></option>
-            </select>
+                        Editora<select name="editora.codigo" class="select.browser-default">
+                        <option th:each="editora:${editorasSelect}"
+                                th:value="${editora.getCodigo()}"
+                                th:text="${editora.getNome()}"></option>
+                    </select>
 
-            Gênero<select name="genero.codigo" class="select.browser-default">
-            <option th:each="genero:${generosSelect}"
-                    th:value="${genero.getCodigo()}"
-                    th:text="${genero.getNome()}">Gênero</option>
-            </select>
+                        Gênero<select name="genero.codigo" class="select.browser-default">
+                        <option th:each="genero:${generosSelect}"
+                                th:value="${genero.getCodigo()}"
+                                th:text="${genero.getNome()}">Gênero</option>
+                    </select>
 
-            ISBN<input type="text" value="" name="isbn"/>
+                        ISBN<input type="text" value="" name="isbn"/>
 
-            Número de Páginas<input type="text" name="numPaginas"/>
+                        Número de Páginas<input type="text" name="numPaginas"/>
 
-            <div class="row">
-                <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+                        <div class="row">
+                            <button class="waves-effect waves-light btn col offset-l4 s4" type="submit">Salvar</button>
+                        </div>
+                    </form>
+                    <div>
+                        <th:block th:include="mensagemValidacao"></th:block>
+                    </div>
+                </div>
             </div>
-        </form>
-    </div>
 
-    <div class="container">
-        <th:block th:include="mensagemValidacao"></th:block>
-    </div>
+            <div class="col s12 m12 l9">
+                <div class="meuContainer tabela">
+                    <h3>Tabela dos livros</h3>
 
-    <div class="container">
-    <h2>Tabela dos livros</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Autor</th>
+                            <th>Editora</th>
+                            <th>Gênero</th>
+                            <th class="np">ISBN</th>
+                            <th class="np">NP</th>
+                            <th>Editar</th>
+                            <th>Deletar</th>
+                        </tr>
+                        </thead>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Autor</th>
-                <th>Editora</th>
-                <th>Gênero</th>
-                <th>ISBN</th>
-                <th>Número de Páginas</th>
-                <th>Editar</th>
-                <th>Deletar</th>
-    </tr>
-    </thead>
+                        <tbody>
+                        <tr th:each="livro:${livros}">
+                            <!-- tabela-->
+                            <td><span th:text="${livro.titulo}"></span></td>
+                            <td><span th:text="${livro.autor.nome}"></span></td>
+                            <td><span th:text="${livro.editora.nome}"></span></td>
+                            <td><span th:text="${livro.genero.nome}"></span></td>
+                            <td class="isbn"><span th:text="${livro.isbn}"></span></td>
+                            <td class="np"><span th:text="${livro.numPaginas}"></span></td>
+                            <td>
+                                <a th:href="${(#mvc.url('LC#editarLivro').arg(0, livro.isbn)).build()}">
+                                    <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </a>
+                            </td>
+                            <td>
+                                <a th:href="${(#mvc.url('LC#deletarLivro').arg(0, livro.isbn)).build()}">
+                                    <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-    <tbody>
-        <tr th:each="livro:${livros}">
-            <!-- tabela-->
-                <td><span th:text="${livro.titulo}"></span></td>
-                <td><span th:text="${livro.autor.nome}"></span></td>
-                <td><span th:text="${livro.editora.nome}"></span></td>
-                <td><span th:text="${livro.genero.nome}"></span></td>
-                <td><span th:text="${livro.isbn}"></span></td>
-                <td><span th:text="${livro.numPaginas}"></span></td>
-                <td>
-                    <a th:href="${(#mvc.url('LC#editarLivro').arg(0, livro.isbn)).build()}">
-                        <button class="waves-effect waves-light btn" id="botaoEditar" type="submit">
-                            <i class="material-icons">edit</i>
-                        </button>
-                    </a>
-                </td>
-            <td>
-                <a th:href="${(#mvc.url('LC#deletarLivro').arg(0, livro.isbn)).build()}">
-                    <button class="waves-effect waves-light btn" id="botaoApagar" type="submit">
-                        <i class="material-icons">delete</i>
-                    </button>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-    </table>
-    </div>
+            </div>
+        </div>
     </main>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
     <footer>
         <p>Trabalho da Disciplina de Laboratório de Linguagem de Programação II</p>
         <p>Bruna Sanches - Gabriel Coelho - Giovana Brágio - Janine de Amorim - Maria Eduarda Carmona - Victor Wilson</p>
         <p>INF3</p>
     </footer>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 </html>
